@@ -12,8 +12,8 @@ class="form-control"
     <tr>
       <th>#</th>
       <th>Name</th>
-      <th>Address</th>
-      <th>Marks</th>
+      <th>Class</th>
+      <th>Score</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -21,8 +21,8 @@ class="form-control"
     <tr *ngFor="let student of students | slice: (page - 1) * pageSize : page * pageSize">
       <td>{{ student.id }}</td>
       <td>{{ student.name }}</td>
-      <td>{{ student.address }}</td>
-      <td>{{ student.marks }}</td>
+      <td>{{ student.class }}</td>
+      <td>{{ student.score }}</td>
       <td>
         <button (click)="editStudent(student)" style="margin-right: 5px; background-color: #4CAF50; color: white; border: none; padding: 5px 10px; cursor: pointer;">Edit</button>
         <button (click)="deleteStudent(student)" style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
