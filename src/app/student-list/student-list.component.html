@@ -1,0 +1,45 @@
+<h2>Students Details</h2>
+<input
+type="text"
+placeholder="ค้นหาชื่อนักเรียน..."
+[(ngModel)]="searchTerm"
+(input)="searchStudents()"
+class="form-control"
+/>
+<button (click)="addStudent()" style="margin-bottom: 10px; background-color: #008CBA; color: white; border: none; padding: 5px 10px; cursor: pointer;">Add Student</button>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Marks</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students | slice: (page - 1) * pageSize : page * pageSize">
+      <td>{{ student.id }}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.address }}</td>
+      <td>{{ student.marks }}</td>
+      <td>
+        <button (click)="editStudent(student)" style="margin-right: 5px; background-color: #4CAF50; color: white; border: none; padding: 5px 10px; cursor: pointer;">Edit</button>
+        <button (click)="deleteStudent(student)" style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button (click)="goToPage(page - 1)" [disabled]="page === 1">Previous</button>
+  <button
+    *ngFor="let pageNumber of pages"
+    (click)="goToPage(pageNumber)"
+    [ngClass]="{ 'active': page === pageNumber }"
+    style="margin: 0 5px; padding: 5px 10px; cursor: pointer;"
+  >
+    {{ pageNumber }}
+  </button>
+  <button (click)="goToPage(page + 1)" [disabled]="page === totalPages">Next</button>
+</div>
